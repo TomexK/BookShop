@@ -16,7 +16,6 @@ Route::get('/', function (){
     return view ('welcome');
 });
 
-
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/dashboard', function () {
         return view('dashboard');
@@ -25,6 +24,10 @@ Route::group(['middleware' => 'auth'], function() {
     Route::group(['prefix' => 'user', 'as' => 'user.'], function() {
         Route::resource('books', \App\Http\Controllers\User\BookController::class);
     });
+
+    Route::get('/search', function (){
+        return view ('search');
+    })->name('search');
 });
 
 require __DIR__.'/auth.php';
